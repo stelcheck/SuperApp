@@ -48,7 +48,9 @@ function loadGitInfo (cb) {
 
                 branch.history().on('commit', function (err, commit) {
 
-                    gitData.commits.push(commit);
+                    commit.message(function (err, msg) {
+                        gitData.commits.unshift(msg);
+                    });
                 });
 
                 cb();
