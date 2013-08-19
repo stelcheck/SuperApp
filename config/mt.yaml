@@ -1,1 +1,1 @@
-listen: './listen.sock'
+listen: 4321
