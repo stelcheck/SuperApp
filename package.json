@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git://github.com/stelcheck/SuperApp.git"
   },
+  "engines" {
+    "node": ">=0.10"
+  },
   "author": "Marc Trudel <mtrudel@wizcorp.jp>",
   "license": "MIT",
   "dependencies": {
@@ -18,6 +21,7 @@
     "connect": "~2.8.5",
     "config": "~0.4.29",
     "js-yaml": "~2.1.0",
-    "git-rev": "~0.2.1"
+    "git-rev": "~0.2.1",
+    "jshint": "~2.1.10"
   }
 }
