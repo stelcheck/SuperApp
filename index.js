@@ -66,5 +66,5 @@ async.parallel([
     loadGitInfo,
     setupWebServer
 ], function (err) {
-    console.log('New service is ready...');
+    console.log('Service is ready...');
 });
