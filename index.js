@@ -1,4 +1,4 @@
-var nodegit = require('nodegit');
+var cp = require('child_process');
 var gitInfo = require('git-rev');
 var async = require('async');
 var connect = require('connect');
@@ -17,7 +17,7 @@ function setupWebServer (cb) {
     var server = connect();
 
     server.use(function (req, res, next) {
-        res.end(JSON.stringify(gitData));
+        res.end(JSON.stringify(gitData, false, 4));
     });
 
     var listen = config.listen;
@@ -34,29 +34,31 @@ function setupWebServer (cb) {
 
 function loadGitInfo (cb) {
 
-    nodegit.repo('.git', function (err, repo) {
+    gitInfo.branch(function (branch) {
 
-        if (err) {
-            throw new Error(err);
-        }
+        gitData.branch = branch;
 
-        gitInfo.branch(function (branch) {
+        cp.exec('git log -n5', function (err, res) {
+            var lines = res.split('\n');
 
-            gitData.branch = branch;
+            /* Works only with single comment-line commits!!! */
+            for (var l = 0; l < lines.length; l += 6) {
 
-            repo.branch(branch, function (err, branch) {
+                var id = lines[l].split(" ")[1];
+                var author = lines[l + 1].split(" ")[1];
+                var date = lines[l + 2].split(" ")[1];
+                var comments = lines[l + 4];
 
-                branch.history().on('commit', function (err, commit) {
-
-                    commit.message(function (err, msg) {
-                        gitData.commits.unshift(msg);
-                    });
+                gitData.commits.push({
+                    id: id,
+                    author: author,
+                    date: date,
+                    comments: comments
                 });
+            }
 
-                cb();
-            });
+            cb();
         });
-
     });
 }
 
