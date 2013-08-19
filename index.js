@@ -24,7 +24,7 @@ function setupWebServer (cb) {
 
     server.listen(listen, function () {
 
-        if (listen.toString().indexOf('server.sock') < 0) {
+        if (listen.toString().indexOf('server.sock') > 0) {
             fs.chmodSync(listen, 0777);
         }
 
