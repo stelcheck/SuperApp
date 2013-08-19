@@ -3,4 +3,4 @@ SuperApp
 
 Node.js Testing App
 
-Details coming soon.
+This app is a test app I used to test CI integration with Jenkin's GitHub plugin.
