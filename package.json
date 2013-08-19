@@ -1,0 +1,23 @@
+{
+  "name": "SuperApp",
+  "version": "0.0.0",
+  "description": "Test Ap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stelcheck/SuperApp.git"
+  },
+  "author": "Marc Trudel <mtrudel@wizcorp.jp>",
+  "license": "MIT",
+  "dependencies": {
+    "nodegit": "0.0.79",
+    "async": "~0.2.9",
+    "connect": "~2.8.5",
+    "config": "~0.4.29",
+    "js-yaml": "~2.1.0",
+    "git-rev": "~0.2.1"
+  }
+}
